@@ -53,13 +53,13 @@ public class LoginServiceController {
 		return ResponseEntity.status(HttpStatus.OK).body( new RegisterUserResponseBody("SUCCESS",savedUser.getUserId()));
 	}
 	
-	@PostMapping("/authenticate")
+	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginServiceRequest request) throws Exception
 	{
 		authenticate(request.getUserName(),request.getPassword());
 		final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(request.getUserName());
 		final String token = jwtUtil.generateToken(userDetails);
-		return ResponseEntity.status(HttpStatus.OK).body(new LoginServiceResponse(token));
+		return ResponseEntity.status(HttpStatus.OK).body(new LoginServiceResponse("SUCCESS",token));
 	}
 	
 	
@@ -78,11 +78,7 @@ public class LoginServiceController {
 	
 	
 	
-	/*
-	 * @PostMapping("/login") public ResponseEntity<?> login(@RequestBody
-	 * LoginServiceRequest request) { return
-	 * ResponseEntity.status(HttpStatus.OK).body("Hi"+request.getUserName()); }
-	 */
+	
 	private void authenticate(String username, String password) throws Exception
 	{
 		try {

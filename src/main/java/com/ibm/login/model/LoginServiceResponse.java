@@ -19,11 +19,6 @@ public class LoginServiceResponse {
 	@JsonProperty("UserToken")
 	private String userToken;
 	
-	@JsonProperty("ServiceToken")
-	private String serviceToken;
-	
-	@JsonProperty("TransactionToken")
-	private String transactionToken;
 	
 	public LoginServiceResponse(String userToken)
 	{
